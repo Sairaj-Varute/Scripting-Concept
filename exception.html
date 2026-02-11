@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exception Example</title>
+</head>
+<body>
+
+<h2>JavaScript Exception Handling</h2>
+
+<button onclick="checkNumber()">Check</button>
+
+<script>
+function checkNumber() {
+    try {
+        var num = prompt("Enter a number greater than 10:");
+
+        if (num <= 10) {
+            throw "Number is too small!";
+        }
+
+        alert("Valid number!");
+    }
+    catch (error) {
+        alert("Error: " + error);
+    }
+}
+</script>
+
+</body>
+</html>
