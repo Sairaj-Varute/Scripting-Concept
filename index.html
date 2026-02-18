@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Travel Transport Checker</title>
+</head>
+<body>
+
+<div id="main">
+    <h2>Transport Checker</h2>
+
+    <input type="text" id="transport"><br><br>
+    <button onclick="runProgram()">Check</button>
+
+    <p id="result"></p>
+</div>
+
+<script>
+
+// JS Styling (different from first one)
+let main = document.getElementById("main");
+main.style.width = "500px";
+main.style.margin = "50px";
+main.style.border = "1px solid black";
+main.style.padding = "20px";
+
+// Class
+class TravelOption {
+    constructor(destination, price, transport) {
+        this.destination = destination;
+        this.price = price;
+        this.transport = transport;
+    }
+
+    checkTransport(userChoice) {
+
+        switch (userChoice.toLowerCase()) {
+
+            case "flight":
+                return this.transport === "Flight"
+                    ? this.destination + " - " + this.price
+                    : "";
+
+            case "train":
+                return this.transport === "Train"
+                    ? this.destination + " - " + this.price
+                    : "";
+
+            case "bus":
+                return this.transport === "Bus"
+                    ? this.destination + " - " + this.price
+                    : "";
+
+            default:
+                return "Invalid transport!";
+        }
+    }
+}
+
+function runProgram() {
+
+    let choice = document.getElementById("transport").value;
+
+    let trips = [
+        new TravelOption("Goa", 5000, "Train"),
+        new TravelOption("Manali", 12000, "Flight"),
+        new TravelOption("Jaipur", 4000, "Bus"),
+        new TravelOption("Kerala", 15000, "Flight")
+    ];
+
+    let output = "";
+
+    for (let i = 0; i < trips.length; i++) {
+        let result = trips[i].checkTransport(choice);
+        if (result !== "") {
+            output += result + "<br>";
+        }
+    }
+
+    if (output === "") {
+        output = "No matching transport.";
+    }
+
+    document.getElementById("result").innerHTML = output;
+}
+
+</script>
+
+</body>
+</html>

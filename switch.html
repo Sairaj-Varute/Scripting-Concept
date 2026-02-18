@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Travel Budget Checker</title>
+</head>
+<body>
+
+<div id="container">
+    <h2>Travel Budget Checker</h2>
+
+    <input type="number" id="budget"><br><br>
+    <button onclick="runProgram()">Check</button>
+
+    <hr>
+    <h3 id="result"></h3>
+</div>
+
+<script>
+
+// JS Styling (no colors)
+let box = document.getElementById("container");
+box.style.width = "300px";
+box.style.margin = "100px auto";
+box.style.border = "1px solid black";
+box.style.padding = "20px";
+box.style.textAlign = "center";
+
+// Function
+function checkAffordable(price, budget) {
+    if (price <= budget) {
+        return "Affordable";
+    } else {
+        return "Too Expensive";
+    }
+}
+
+// Class
+class TravelOption {
+    constructor(destination, price) {
+        this.destination = destination;
+        this.price = price;
+    }
+
+    getResult(budget) {
+        return this.destination + " (" + this.price + ") - " +
+               checkAffordable(this.price, budget);
+    }
+}
+
+function runProgram() {
+
+    let budget = Number(document.getElementById("budget").value);
+
+    let destinations = [
+        new TravelOption("Goa", 5000),
+        new TravelOption("Manali", 12000),
+        new TravelOption("Jaipur", 4000)
+		
+    ];
+
+    let output = "";
+
+    for (let i = 0; i < destinations.length; i++) {
+        output += destinations[i].getResult(budget) + "<br>";
+    }
+
+    document.getElementById("result").innerHTML = output;
+}
+
+</script>
+
+</body>
+</html>
